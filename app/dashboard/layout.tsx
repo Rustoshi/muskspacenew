@@ -9,17 +9,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     return (
-        <div className="min-h-screen bg-black text-white flex overflow-x-hidden w-full max-w-[100vw] relative">
+        <div className="min-h-screen bg-black text-white flex md:overflow-hidden w-full max-w-[100vw] relative">
             <Sidebar
                 isOpen={isMobileMenuOpen}
                 onClose={() => setIsMobileMenuOpen(false)}
             />
 
             {/* Main Content Area */}
-            <div className="flex flex-col flex-1 w-full max-w-[100vw] md:pl-64 transition-all duration-300 pb-24 md:pb-0 overflow-x-hidden">
+            <div className="flex flex-col flex-1 w-full max-w-[100vw] md:pl-64 transition-all duration-300 pb-24 md:pb-0 md:overflow-hidden min-h-screen">
                 <DashboardNavbar onMenuToggle={() => setIsMobileMenuOpen(true)} />
                 {/* Main Content (Children) */}
-                <main className="flex-1 w-full max-w-[100vw] relative pt-16 overflow-x-hidden">
+                <main className="flex-1 w-full max-w-[100vw] relative pt-16 md:overflow-y-auto">
                     {children}
                 </main>
 
