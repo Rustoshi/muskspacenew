@@ -201,7 +201,7 @@ body {
   jdiv[class*="container"],
   jdiv[class*="label"],
   div[id^="jivo-"] {
-    bottom: 92px !important;
+    bottom: 112px !important;
   }
 
   /* Stabilize mobile body scroll */
