@@ -151,7 +151,7 @@ export default function OrderConfigurator({ product, details, cryptoWallets = []
     const tabActive = isDashboard ? "bg-white/10 text-white" : "bg-white text-black shadow-sm";
 
     return (
-        <div className={`w-full ${isDashboard ? "min-h-full rounded-2xl overflow-hidden border border-white/5 shadow-2xl" : "min-h-[calc(100vh-60px)]"} flex flex-col md:flex-row ${bgMain}`}>
+        <div className={`w-full ${isDashboard ? "md:min-h-full rounded-2xl md:overflow-hidden border border-white/5 shadow-2xl" : "min-h-[calc(100vh-60px)]"} flex flex-col md:flex-row ${bgMain}`}>
 
             {/* Left Column: Fixed Product Hero */}
             <div className={`w-full md:w-3/5 lg:w-2/3 h-[30vh] md:h-auto relative ${bgSecondary} overflow-hidden ${isDashboard ? "" : "md:sticky md:top-[60px] md:h-[calc(100vh-60px)]"}`}>
@@ -165,7 +165,7 @@ export default function OrderConfigurator({ product, details, cryptoWallets = []
             </div>
 
             {/* Right Column: Configuration Options */}
-            <div className="w-full md:w-2/5 lg:w-1/3 p-6 sm:p-10 lg:p-14 overflow-y-auto" style={isDashboard ? { maxHeight: 'calc(100vh - 120px)' } : {}}>
+            <div className={`w-full md:w-2/5 lg:w-1/3 p-6 sm:p-10 lg:p-14 ${isDashboard ? "md:max-h-[calc(100vh-120px)] md:overflow-y-auto" : ""}`}>
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
