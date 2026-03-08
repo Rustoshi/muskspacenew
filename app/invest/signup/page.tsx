@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { signIn } from "next-auth/react";
 import { countries } from "@/lib/countries";
 
-const currencies = ["USD", "GBP", "EUR", "CAD", "AUD", "NGN", "ZAR", "INR", "BRL", "JPY", "SGD", "AED", "CHF"];
+const currencies = ["USD", "GBP", "EUR", "CAD", "AUD", "ZAR", "INR", "BRL", "JPY", "SGD", "AED", "CHF"];
 
 const inputClass =
     "w-full bg-white/[0.04] border border-white/[0.1] rounded-xl px-4 py-3.5 text-sm text-white placeholder:text-white/20 font-light outline-none focus:border-white/30 transition-colors duration-300";

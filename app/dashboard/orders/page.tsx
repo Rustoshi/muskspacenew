@@ -40,7 +40,7 @@ export default async function OrdersPage() {
                     <Package className="w-12 h-12 text-white/20 mb-4" />
                     <h3 className="text-lg font-bold text-white tracking-widest uppercase mb-2">No Orders Found</h3>
                     <p className="text-sm text-white/40 mb-8 max-w-md">You haven't placed any orders yet. Visit the shop to explore our available models.</p>
-                    <Link href="/dashboard/shop" className="px-8 py-4 bg-white text-black font-bold uppercase tracking-widest text-sm hover:bg-white/90 transition-colors">
+                    <Link href="/dashboard?tab=shop" className="px-8 py-4 bg-white text-black font-bold uppercase tracking-widest text-sm hover:bg-white/90 transition-colors">
                         Browse Shop
                     </Link>
                 </div>

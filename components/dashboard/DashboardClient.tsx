@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import ModeSwitcher, { DashboardMode } from "@/components/dashboard/ModeSwitcher";
 
@@ -29,8 +30,16 @@ interface DashboardClientProps {
     vehicles?: any[];
 }
 
-export default function DashboardClient({ userData, activePlans, recentActivities, shopOrders = [], vehicles = [] }: DashboardClientProps) {
+function DashboardContent({ userData, activePlans, recentActivities, shopOrders = [], vehicles = [] }: DashboardClientProps) {
+    const searchParams = useSearchParams();
     const [mode, setMode] = useState<DashboardMode>("invest");
+
+    useEffect(() => {
+        const tab = searchParams.get("tab");
+        if (tab === "shop") {
+            setMode("shop");
+        }
+    }, [searchParams]);
 
     return (
         <div className="flex flex-col w-full max-w-[100vw] overflow-x-hidden">
@@ -80,5 +89,13 @@ export default function DashboardClient({ userData, activePlans, recentActivitie
                 </AnimatePresence>
             </div>
         </div>
+    );
+}
+
+export default function DashboardClient(props: DashboardClientProps) {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-black flex items-center justify-center"><div className="w-8 h-8 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div></div>}>
+            <DashboardContent {...props} />
+        </Suspense>
     );
 }

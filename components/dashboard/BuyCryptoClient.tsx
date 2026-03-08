@@ -209,12 +209,12 @@ export default function BuyCryptoClient({ userCountry: initialUserCountry }: Buy
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.1 }}
-                className="bg-white/[0.02] border border-white/[0.08] rounded-2xl p-6 sm:p-8 mb-12 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-visible glass"
+                className="bg-[#0a0a0a] border border-white/[0.08] rounded-2xl p-6 sm:p-8 mb-12 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-visible"
             >
                 <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-[80px] pointer-events-none" />
 
                 <div className="flex flex-col sm:flex-row items-center gap-5 relative z-10 w-full md:w-auto">
-                    <div className="w-16 h-16 rounded-full bg-black/60 border border-white/10 flex items-center justify-center shrink-0">
+                    <div className="w-16 h-16 rounded-full bg-[#111] border border-white/10 flex items-center justify-center shrink-0">
                         <MapPin className="w-8 h-8 text-cyan-400" />
                     </div>
                     <div className="flex flex-col items-center sm:items-start w-full md:w-auto">
@@ -227,7 +227,7 @@ export default function BuyCryptoClient({ userCountry: initialUserCountry }: Buy
                         <div className="relative mt-2 w-full md:w-64">
                             <button
                                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                                className="w-full bg-black/40 hover:bg-black/60 border border-white/10 rounded-xl px-4 py-3 flex items-center justify-between transition-colors focus:outline-none focus:border-cyan-500/50"
+                                className="w-full bg-[#111] hover:bg-[#1a1a1a] border border-white/10 rounded-xl px-4 py-3 flex items-center justify-between transition-colors focus:outline-none focus:border-cyan-500/50"
                             >
                                 <span className="font-bold text-white tracking-wide uppercase truncate text-sm">
                                     {availableRegions.find(r => r.id === selectedRegionId)?.name || selectedRegionId}
@@ -247,13 +247,13 @@ export default function BuyCryptoClient({ userCountry: initialUserCountry }: Buy
                                             animate={{ opacity: 1, y: 0 }}
                                             exit={{ opacity: 0, y: -10 }}
                                             transition={{ duration: 0.2 }}
-                                            className="absolute top-[110%] left-0 right-0 mt-2 bg-[#0a0a0a] border border-white/10 rounded-xl max-h-60 overflow-y-auto shadow-2xl z-50 custom-scrollbar"
+                                            className="absolute top-[110%] left-0 right-0 mt-2 bg-[#111] border border-white/20 rounded-xl max-h-60 overflow-y-auto shadow-[0_20px_50px_rgba(0,0,0,1)] z-50 custom-scrollbar"
                                         >
                                             {availableRegions.map(region => (
                                                 <button
                                                     key={region.id}
                                                     onClick={() => handleSelectRegion(region.id)}
-                                                    className="w-full text-left px-4 py-3 hover:bg-white/5 flex items-center justify-between border-b last:border-0 border-white/5 transition-colors"
+                                                    className="w-full text-left px-4 py-3 hover:bg-white/10 flex items-center justify-between border-b last:border-0 border-white/5 transition-colors"
                                                 >
                                                     <span className={`text-xs tracking-wide uppercase ${selectedRegionId === region.id ? "text-cyan-400 font-bold" : "text-white/80"}`}>
                                                         {region.name}
