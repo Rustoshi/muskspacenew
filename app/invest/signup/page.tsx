@@ -5,13 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { signIn } from "next-auth/react";
-
-const countries = [
-    "United States", "United Kingdom", "Canada", "Australia", "Germany",
-    "France", "Nigeria", "South Africa", "India", "Brazil", "Japan",
-    "Singapore", "United Arab Emirates", "Netherlands", "Switzerland",
-    "Sweden", "Norway", "Denmark", "Ireland", "New Zealand",
-];
+import { countries } from "@/lib/countries";
 
 const currencies = ["USD", "GBP", "EUR", "CAD", "AUD", "NGN", "ZAR", "INR", "BRL", "JPY", "SGD", "AED", "CHF"];
 

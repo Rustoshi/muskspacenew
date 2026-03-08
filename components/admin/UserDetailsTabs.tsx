@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { User as UserIcon, Wallet, Activity, Contact, CheckCircle2, AlertCircle, Loader2, Save, X, Ban, Mail } from "lucide-react";
 import { updateUserDetails, processDeposit, processProfit, manageUserPlan, updateKycStatus } from "@/app/admin/actions/users";
+import { countries } from "@/lib/countries";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
@@ -131,7 +132,12 @@ export default function UserDetailsTabs({ user, userPlans = [], systemPlans = []
 
                                     <div className="space-y-1.5">
                                         <label className="text-[10px] uppercase tracking-widest text-white/40">Country <span className="text-red-500">*</span></label>
-                                        <input name="country" type="text" defaultValue={user.country} required className="w-full bg-black/50 border border-white/[0.1] rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-red-500/50 transition-colors" />
+                                        <select name="country" defaultValue={user.country} required className="w-full bg-black/50 border border-white/[0.1] rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-red-500/50 transition-colors appearance-none">
+                                            <option value="" disabled>Select Country</option>
+                                            {countries.map((c) => (
+                                                <option key={c} value={c}>{c}</option>
+                                            ))}
+                                        </select>
                                     </div>
 
                                     <div className="space-y-1.5 pt-4 border-t border-white/5">
