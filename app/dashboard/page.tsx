@@ -18,9 +18,9 @@ export default async function DashboardPage() {
     // 2. Fetch the user's fresh database record
     await dbConnect();
 
-    // Fetch user totals
+    // Fetch user totals and currency
     const user = await User.findById(session.user.id).select(
-        "totalBalance totalProfit totalInvested activePlans"
+        "totalBalance totalProfit totalInvested activePlans currency"
     ).lean();
 
     if (!user) {
@@ -49,17 +49,18 @@ export default async function DashboardPage() {
         totalProfits: user.totalProfit || 0,
         totalInvested: user.totalInvested || 0,
         activePlansCount: user.activePlans || 0,
+        currency: user.currency || "$",
     };
 
     const formattedPlans = activePlansDocs.map((plan: any) => ({
         id: plan.planId,
         name: plan.name,
-        capital: `$${plan.capital.toLocaleString(undefined, { minimumFractionDigits: 0 })}`,
+        capital: `${user.currency}${plan.capital.toLocaleString(undefined, { minimumFractionDigits: 0 })}`,
         cycle: plan.cycle,
         target: plan.target,
         currentPnL: plan.currentPnL >= 0
-            ? `+$${plan.currentPnL.toLocaleString()}`
-            : `-$${Math.abs(plan.currentPnL).toLocaleString()}`
+            ? `+${user.currency}${plan.currentPnL.toLocaleString()}`
+            : `-${user.currency}${Math.abs(plan.currentPnL).toLocaleString()}`
     }));
 
     const formattedActivities = transactionsDocs.map((tx: any) => {
@@ -97,7 +98,7 @@ export default async function DashboardPage() {
             type: typeStr,
             title,
             date: new Date(tx.createdAt || tx.date).toLocaleDateString("en-US", { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }),
-            amount: `${positive ? '+' : '-'}$${tx.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}`,
+            amount: `${positive ? '+' : '-'}${user.currency}${tx.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}`,
             status: tx.status.charAt(0).toUpperCase() + tx.status.slice(1),
             positive
         };
@@ -128,5 +129,5 @@ export default async function DashboardPage() {
         img: v.heroImage || "",
     }));
 
-    return <DashboardClient userData={userData} activePlans={formattedPlans} recentActivities={formattedActivities} shopOrders={formattedShopOrders} vehicles={formattedVehicles} />;
+    return <DashboardClient userData={userData} activePlans={formattedPlans} recentActivities={formattedActivities} shopOrders={formattedShopOrders} vehicles={formattedVehicles} currency={user.currency || "$"} />;
 }

@@ -9,13 +9,15 @@ interface InvestmentOverviewProps {
         totalProfits: number;
         totalInvested: number;
         activePlansCount: number;
+        currency: string;
     }
+    currency: string;
 }
 
-export default function InvestmentOverview({ userData }: InvestmentOverviewProps) {
-    const formattedBalance = userData?.totalBalance ? `$${userData.totalBalance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : "$0.00";
-    const formattedProfits = userData?.totalProfits ? `$${userData.totalProfits.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : "$0.00";
-    const formattedInvested = userData?.totalInvested ? `$${userData.totalInvested.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : "$0.00";
+export default function InvestmentOverview({ userData, currency }: InvestmentOverviewProps) {
+    const formattedBalance = userData?.totalBalance ? `${currency}${userData.totalBalance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : `${currency}0.00`;
+    const formattedProfits = userData?.totalProfits ? `${currency}${userData.totalProfits.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : `${currency}0.00`;
+    const formattedInvested = userData?.totalInvested ? `${currency}${userData.totalInvested.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : `${currency}0.00`;
     const activePlans = userData?.activePlansCount ? `${userData.activePlansCount}` : "0";
 
     const kpis = [

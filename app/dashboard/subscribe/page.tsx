@@ -19,7 +19,7 @@ export default async function SubscribePage() {
 
     await dbConnect();
 
-    const user = await User.findOne({ email: session.user.email }).lean();
+    const user = await User.findOne({ email: session.user.email }).select("totalBalance currency").lean();
     if (!user) {
         redirect("/invest/login");
     }
@@ -35,7 +35,7 @@ export default async function SubscribePage() {
 
     return (
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 pb-32">
-            <SubscribeClient plans={serializedPlans} userBalance={user.totalBalance || 0} />
+            <SubscribeClient plans={serializedPlans} userBalance={user.totalBalance || 0} currency={user.currency || "$"} />
         </div>
     );
 }

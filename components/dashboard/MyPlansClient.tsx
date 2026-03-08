@@ -8,9 +8,10 @@ interface MyPlansClientProps {
     plans: any[];
     totalInvested: number;
     totalProfit: number;
+    currency: string;
 }
 
-export default function MyPlansClient({ plans, totalInvested, totalProfit }: MyPlansClientProps) {
+export default function MyPlansClient({ plans, totalInvested, totalProfit, currency }: MyPlansClientProps) {
     const activePlans = plans.filter(p => p.status === 'active');
     const pastPlans = plans.filter(p => p.status !== 'active');
 
@@ -34,7 +35,7 @@ export default function MyPlansClient({ plans, totalInvested, totalProfit }: MyP
                             Total Invested
                             <ShieldCheck className="w-3.5 h-3.5 text-white/30" />
                         </div>
-                        <div className="text-xl sm:text-2xl font-mono text-white tracking-tight">${totalInvested.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+                        <div className="text-xl sm:text-2xl font-mono text-white tracking-tight">{currency}{totalInvested.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
                     </div>
                 </div>
 
@@ -45,7 +46,7 @@ export default function MyPlansClient({ plans, totalInvested, totalProfit }: MyP
                             Total Profits
                             <TrendingUp className="w-3.5 h-3.5 text-green-400/50" />
                         </div>
-                        <div className="text-xl sm:text-2xl font-mono text-green-400 tracking-tight">+${totalProfit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+                        <div className="text-xl sm:text-2xl font-mono text-green-400 tracking-tight">+{currency}{totalProfit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
                     </div>
                 </div>
             </div>
@@ -93,7 +94,7 @@ export default function MyPlansClient({ plans, totalInvested, totalProfit }: MyP
                                 <div className="grid grid-cols-2 gap-4 mb-6">
                                     <div>
                                         <div className="text-[9px] uppercase tracking-widest text-white/30 mb-1">Capital Invested</div>
-                                        <div className="text-sm font-mono text-white">${plan.capital.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+                                        <div className="text-sm font-mono text-white">{currency}{plan.capital.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
                                     </div>
                                     <div>
                                         <div className="text-[9px] uppercase tracking-widest text-white/30 mb-1">Target ROI</div>
@@ -107,7 +108,7 @@ export default function MyPlansClient({ plans, totalInvested, totalProfit }: MyP
                                             <BarChart3 className="w-3.5 h-3.5" /> Live PNL
                                         </span>
                                         <span className="text-sm font-mono text-green-400 font-bold">
-                                            +${(plan.currentPnL || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                            +{currency}{(plan.currentPnL || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                         </span>
                                     </div>
                                     <div className="mt-4 flex items-center gap-1.5 text-[9px] text-white/30 uppercase tracking-widest font-mono">
@@ -131,7 +132,7 @@ export default function MyPlansClient({ plans, totalInvested, totalProfit }: MyP
                                 <div>
                                     <h4 className="text-xs font-bold tracking-widest uppercase text-white/60">{plan.name}</h4>
                                     <div className="text-[10px] font-mono text-white/40 mt-1">
-                                        Cap: ${plan.capital.toLocaleString()} | PNL: +${(plan.currentPnL || 0).toLocaleString()}
+                                        Cap: {currency}{plan.capital.toLocaleString()} | PNL: +{currency}{(plan.currentPnL || 0).toLocaleString()}
                                     </div>
                                 </div>
                                 <div className="text-[10px] uppercase tracking-widest px-2 py-1 rounded bg-white/5 text-white/40">

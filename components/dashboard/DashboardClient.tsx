@@ -23,14 +23,16 @@ interface DashboardClientProps {
         totalProfits: number;
         totalInvested: number;
         activePlansCount: number;
+        currency: string;
     },
     activePlans: any[];
     recentActivities: any[];
-    shopOrders?: any[]; // Making it optional to avoid breaking existing pages if not passed immediately
+    shopOrders?: any[];
     vehicles?: any[];
+    currency: string;
 }
 
-function DashboardContent({ userData, activePlans, recentActivities, shopOrders = [], vehicles = [] }: DashboardClientProps) {
+function DashboardContent({ userData, activePlans, recentActivities, shopOrders = [], vehicles = [], currency }: DashboardClientProps) {
     const searchParams = useSearchParams();
     const [mode, setMode] = useState<DashboardMode>("invest");
 
@@ -68,7 +70,7 @@ function DashboardContent({ userData, activePlans, recentActivities, shopOrders 
                             exit={{ opacity: 0, y: -15 }}
                             transition={{ duration: 0.4 }}
                         >
-                            <InvestmentOverview userData={userData} />
+                            <InvestmentOverview userData={userData} currency={currency} />
                             <InvestmentPlans activePlans={activePlans} />
                             <RecentActivity activities={recentActivities} />
                             <MarketCharts />

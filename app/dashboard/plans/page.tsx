@@ -19,7 +19,7 @@ export default async function MyPlansPage() {
 
     await dbConnect();
 
-    const user = await User.findOne({ email: session.user.email }).lean();
+    const user = await User.findOne({ email: session.user.email }).select("totalInvested totalProfit currency").lean();
     if (!user) {
         redirect("/invest/login");
     }
@@ -44,6 +44,7 @@ export default async function MyPlansPage() {
                 plans={serializedPlans}
                 totalInvested={user.totalInvested || 0}
                 totalProfit={user.totalProfit || 0}
+                currency={user.currency || "$"}
             />
         </div>
     );

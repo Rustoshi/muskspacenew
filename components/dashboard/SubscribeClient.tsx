@@ -8,9 +8,10 @@ import { ChevronRight, ArrowRight, ShieldCheck, TrendingUp, AlertCircle, CheckCi
 interface SubscribeClientProps {
     plans: any[];
     userBalance: number;
+    currency: string;
 }
 
-export default function SubscribeClient({ plans, userBalance }: SubscribeClientProps) {
+export default function SubscribeClient({ plans, userBalance, currency }: SubscribeClientProps) {
     const router = useRouter();
     const [selectedPlanId, setSelectedPlanId] = useState<string | null>(null);
     const [amount, setAmount] = useState<string>('');
@@ -58,7 +59,7 @@ export default function SubscribeClient({ plans, userBalance }: SubscribeClientP
                 <div className="absolute top-0 right-0 w-64 h-64 bg-red-500/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/3 group-hover:bg-red-500/10 transition-all duration-700" />
                 <div className="relative z-10">
                     <div className="text-[10px] uppercase tracking-widest text-white/40 font-bold mb-1">Available Balance</div>
-                    <div className="text-2xl font-mono text-white tracking-tight">${userBalance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+                    <div className="text-2xl font-mono text-white tracking-tight">{currency}{userBalance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
                 </div>
                 <div className="relative z-10 w-12 h-12 rounded-full bg-white/[0.03] border border-white/[0.05] flex items-center justify-center">
                     <TrendingUp className="w-5 h-5 text-red-400" />
@@ -114,7 +115,7 @@ export default function SubscribeClient({ plans, userBalance }: SubscribeClientP
                                     <div>
                                         <div className="text-[9px] uppercase tracking-widest text-white/30 mb-1">Target Return</div>
                                         <div className="text-sm font-bold text-green-400 font-mono">
-                                            {plan.returnLow}%{plan.returnHigh ? ` - ${plan.returnHigh}%` : ''} <span className="text-[10px] text-white/50 ml-2 font-sans uppercase tracking-wider">{plan.capitalRange}</span>
+                                            {plan.returnLow}%{plan.returnHigh ? ` - ${plan.returnHigh}%` : ''} <span className="text-[10px] text-white/50 ml-2 font-sans uppercase tracking-wider">{currency}{plan.capitalRange}</span>
                                         </div>
                                     </div>
                                     <div>
@@ -175,11 +176,11 @@ export default function SubscribeClient({ plans, userBalance }: SubscribeClientP
                             <form onSubmit={handleSubscribe} className="p-6 space-y-6">
                                 <div className="space-y-2">
                                     <label className="text-[10px] uppercase tracking-widest text-white/50 flex justify-between">
-                                        <span>Investment Amount ($)</span>
-                                        <span className="text-red-400 font-mono">${userBalance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                                        <span>Investment Amount ({currency})</span>
+                                        <span className="text-red-400 font-mono">{currency}{userBalance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                                     </label>
                                     <div className="relative">
-                                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30 font-mono text-lg">$</span>
+                                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30 font-mono text-lg">{currency}</span>
                                         <input
                                             type="number"
                                             value={amount}
