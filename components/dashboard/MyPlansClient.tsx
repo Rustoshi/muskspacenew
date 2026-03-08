@@ -91,14 +91,10 @@ export default function MyPlansClient({ plans, totalInvested, totalProfit, curre
                                     </div>
                                 </div>
 
-                                <div className="grid grid-cols-2 gap-4 mb-6">
+                                <div className="grid grid-cols-1 gap-4 mb-6">
                                     <div>
                                         <div className="text-[9px] uppercase tracking-widest text-white/30 mb-1">Capital Invested</div>
                                         <div className="text-sm font-mono text-white">{currency}{plan.capital.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
-                                    </div>
-                                    <div>
-                                        <div className="text-[9px] uppercase tracking-widest text-white/30 mb-1">Target ROI</div>
-                                        <div className="text-sm font-mono text-white">{plan.target?.replace("Based on historical backtesting and volatility-adjusted strategy modeling.", " ")?.replace("Based on historical backtesting...", "")?.trim()}</div>
                                     </div>
                                 </div>
 

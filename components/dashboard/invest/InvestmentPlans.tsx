@@ -75,7 +75,7 @@ export default function InvestmentPlans({ activePlans }: InvestmentPlansProps) {
                                 </div>
 
                                 {/* Middle Grid */}
-                                <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 flex-1">
+                                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 flex-1">
                                     <div>
                                         <div className="text-[10px] text-white/40 tracking-wider uppercase mb-1">Capital</div>
                                         <div className="text-sm font-semibold text-white">{plan.capital}</div>
@@ -83,10 +83,6 @@ export default function InvestmentPlans({ activePlans }: InvestmentPlansProps) {
                                     <div>
                                         <div className="text-[10px] text-white/40 tracking-wider uppercase mb-1">Cycle</div>
                                         <div className="text-sm font-semibold text-white">{plan.cycle}</div>
-                                    </div>
-                                    <div>
-                                        <div className="text-[10px] text-white/40 tracking-wider uppercase mb-1">Target</div>
-                                        <div className="text-sm font-semibold text-white">{plan.target.replace("Based on historical backtesting and volatility-adjusted strategy modeling.", "").trim()}</div>
                                     </div>
                                     <div>
                                         <div className="text-[10px] text-white/40 tracking-wider uppercase mb-1">P&L</div>
