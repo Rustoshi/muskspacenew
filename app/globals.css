@@ -193,12 +193,13 @@ body {
 }
 
 /* ─── Mobile Scroll Stability ─── */
+@media (max-width: 768px) {
 
-/* Stabilize mobile body scroll */
-html,
-body {
-  height: auto;
-  min-height: 100%;
-  -webkit-overflow-scrolling: touch;
-}
+  /* Stabilize mobile body scroll */
+  html,
+  body {
+    height: auto;
+    min-height: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
 }
