@@ -48,7 +48,7 @@ export default function SubscribeClient({ plans, userBalance }: SubscribeClientP
             <div>
                 <h2 className="text-xl font-bold tracking-widest text-white uppercase font-montserrat flex items-center gap-3">
                     <Sparkles className="w-5 h-5 text-red-500" />
-                    Investment Plans
+                    Available Plans
                 </h2>
                 <p className="text-xs text-white/40 tracking-wider mt-1">Select a portfolio strategy to grow your assets.</p>
             </div>
@@ -78,7 +78,7 @@ export default function SubscribeClient({ plans, userBalance }: SubscribeClientP
 
                 {/* Plans List */}
                 <div className="space-y-4">
-                    <h3 className="text-xs uppercase tracking-widest text-white/50 font-bold ml-1 mb-4">Available Strategies</h3>
+                    <h3 className="text-xs uppercase tracking-widest text-white/50 font-bold ml-1 mb-4">Available Plans</h3>
                     {plans.length === 0 ? (
                         <div className="p-8 text-center border border-white/[0.05] border-dashed rounded-2xl bg-white/[0.01]">
                             <p className="text-sm text-white/40 uppercase tracking-widest">No investment plans are currently available.</p>
@@ -114,7 +114,7 @@ export default function SubscribeClient({ plans, userBalance }: SubscribeClientP
                                     <div>
                                         <div className="text-[9px] uppercase tracking-widest text-white/30 mb-1">Target Return</div>
                                         <div className="text-sm font-bold text-green-400 font-mono">
-                                            {plan.returnLow}%{plan.returnHigh ? ` - ${plan.returnHigh}%` : ''} <span className="text-xs text-white/50">{plan.returnContext}</span>
+                                            {plan.returnLow}%{plan.returnHigh ? ` - ${plan.returnHigh}%` : ''} <span className="text-[10px] text-white/50 ml-2 font-sans uppercase tracking-wider">{plan.capitalRange}</span>
                                         </div>
                                     </div>
                                     <div>
@@ -203,7 +203,7 @@ export default function SubscribeClient({ plans, userBalance }: SubscribeClientP
                                     {loading ? (
                                         <Loader2 className="w-4 h-4 animate-spin" />
                                     ) : (
-                                        <>Deploy Capital <ArrowRight className="w-4 h-4" /></>
+                                        <>Subscribe Plan <ArrowRight className="w-4 h-4" /></>
                                     )}
                                 </button>
                             </form>

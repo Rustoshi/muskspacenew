@@ -40,7 +40,7 @@ export default function InvestmentPlans({ activePlans }: InvestmentPlansProps) {
                         You don't have any active investment plans yet. Subscribe to a plan to start earning yields.
                     </p>
                     <Link
-                        href="/dashboard/invest"
+                        href="/dashboard/subscribe"
                         className="px-8 py-3 bg-white text-black text-[11px] font-bold tracking-widest uppercase rounded-full hover:bg-white/90 transition-colors"
                     >
                         Subscribe to a Plan

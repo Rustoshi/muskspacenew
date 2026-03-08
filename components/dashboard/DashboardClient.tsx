@@ -59,7 +59,7 @@ function DashboardContent({ userData, activePlans, recentActivities, shopOrders 
                     <ModeSwitcher mode={mode} setMode={setMode} />
                 </div>
 
-                <AnimatePresence mode="wait">
+                <AnimatePresence>
                     {mode === "invest" ? (
                         <motion.div
                             key="invest"

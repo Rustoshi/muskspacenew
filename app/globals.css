@@ -21,6 +21,16 @@ body {
   overscroll-behavior-x: none;
 }
 
+/* Disable smooth scroll on mobile to prevent "snap back" bugs */
+@media (max-width: 768px) {
+
+  html,
+  body {
+    scroll-behavior: auto !important;
+    overscroll-behavior-y: none;
+  }
+}
+
 /* Subtle scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
@@ -184,15 +194,19 @@ body {
 
 /* ─── JivoChat & Mobile Scroll Stability ─── */
 @media (max-width: 768px) {
+
   /* Raise JivoChat to avoid covering bottom nav */
   #jivo-iframe-container,
   #jivo-iframe-container iframe,
-  jdiv[class*="container"] {
-    bottom: 85px !important;
+  jdiv[class*="container"],
+  jdiv[class*="label"],
+  div[id^="jivo-"] {
+    bottom: 92px !important;
   }
 
   /* Stabilize mobile body scroll */
-  html, body {
+  html,
+  body {
     height: auto;
     min-height: 100%;
     -webkit-overflow-scrolling: touch;
