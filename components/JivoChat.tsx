@@ -15,41 +15,70 @@ export default function JivoChat() {
             const isMobile = window.innerWidth <= 768;
             if (!isMobile) return;
 
+            // Target everything that looks like Jivo
+            const selectors = [
+                '#jivo-iframe-container',
+                '.jivo-iframe-container',
+                '[id^="jivo-"]',
+                '[id*="jivo"]',
+                '[class^="jivo-"]',
+                '[class*="jivo"]',
+                'jdiv'
+            ];
+
             const styles = `
-                #jivo-iframe-container,
-                #jivo-iframe-container iframe,
-                jdiv[class*="container"],
-                jdiv[class*="label"],
-                div[id^="jivo-"],
-                .jivo-iframe-container {
-                    bottom: 112px !important;
+                ${selectors.join(',\n')} {
+                    bottom: 115px !important;
+                    top: auto !important;
+                    transform: none !important;
                 }
             `;
 
-            let styleTag = document.getElementById("jivo-custom-style");
+            let styleTag = document.getElementById("jivo-custom-style-forced");
             if (!styleTag) {
                 styleTag = document.createElement("style");
-                styleTag.id = "jivo-custom-style";
+                styleTag.id = "jivo-custom-style-forced";
                 document.head.appendChild(styleTag);
             }
             styleTag.innerHTML = styles;
+
+            // Also try to find elements and set style directly
+            selectors.forEach(sel => {
+                document.querySelectorAll(sel).forEach(el => {
+                    if (el instanceof HTMLElement) {
+                        el.style.setProperty('bottom', '115px', 'important');
+                        el.style.setProperty('top', 'auto', 'important');
+                        el.style.setProperty('transform', 'none', 'important');
+                        el.style.setProperty('display', 'block', 'important');
+                    }
+                });
+            });
         };
 
         // Initial apply
         applyForcedStyles();
 
-        // Observe DOM changes to catch JivoChat injection
-        const observer = new MutationObserver(() => {
+        // Very aggressive observer
+        const observer = new MutationObserver((mutations) => {
             applyForcedStyles();
         });
 
-        observer.observe(document.body, { childList: true, subtree: true });
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ['style', 'class', 'id']
+        });
 
-        // Handle resize
+        // Also a failsafe interval for the first 15 seconds
+        const interval = setInterval(applyForcedStyles, 500);
+        setTimeout(() => clearInterval(interval), 15000);
+
         window.addEventListener('resize', applyForcedStyles);
 
         return () => {
             observer.disconnect();
+            clearInterval(interval);
             window.removeEventListener('resize', applyForcedStyles);
         };
     }, []);
