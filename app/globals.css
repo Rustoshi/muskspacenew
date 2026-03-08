@@ -198,9 +198,13 @@ body {
   /* Raise JivoChat to avoid covering bottom nav */
   #jivo-iframe-container,
   #jivo-iframe-container iframe,
+  .jivo-iframe-container,
+  .jivo-iframe-container iframe,
   jdiv[class*="container"],
   jdiv[class*="label"],
-  div[id^="jivo-"] {
+  jdiv[class*="widget"],
+  div[id^="jivo-"],
+  div[class^="jivo-"] {
     bottom: 112px !important;
   }
 
