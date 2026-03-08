@@ -181,3 +181,20 @@ body {
     transform: scale(1.02) translateX(2%);
   }
 }
+
+/* ─── JivoChat & Mobile Scroll Stability ─── */
+@media (max-width: 768px) {
+  /* Raise JivoChat to avoid covering bottom nav */
+  #jivo-iframe-container,
+  #jivo-iframe-container iframe,
+  jdiv[class*="container"] {
+    bottom: 85px !important;
+  }
+
+  /* Stabilize mobile body scroll */
+  html, body {
+    height: auto;
+    min-height: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+}

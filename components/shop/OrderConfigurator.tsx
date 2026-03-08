@@ -154,7 +154,7 @@ export default function OrderConfigurator({ product, details, cryptoWallets = []
         <div className={`w-full ${isDashboard ? "min-h-full rounded-2xl md:overflow-hidden border border-white/5 shadow-2xl overflow-visible" : "min-h-[calc(100vh-60px)]"} flex flex-col md:flex-row ${bgMain}`}>
 
             {/* Left Column: Fixed Product Hero */}
-            <div className={`w-full md:w-3/5 lg:w-2/3 h-[30vh] md:h-auto relative ${bgSecondary} overflow-hidden ${isDashboard ? "" : "md:sticky md:top-[60px] md:h-[calc(100vh-60px)]"}`}>
+            <div className={`w-full md:w-3/5 lg:w-2/3 min-h-[280px] h-[35vh] md:h-auto relative ${bgSecondary} overflow-hidden ${isDashboard ? "" : "md:sticky md:top-[60px] md:h-[calc(100vh-60px)]"}`}>
                 <Image
                     src={product.heroImage || "https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-S-Main-Hero-Desktop-LHD.jpg"}
                     alt={product.name}
@@ -167,7 +167,7 @@ export default function OrderConfigurator({ product, details, cryptoWallets = []
             {/* Right Column: Configuration Options */}
             <div className={`w-full md:w-2/5 lg:w-1/3 p-6 sm:p-10 lg:p-14 ${isDashboard ? "md:max-h-[calc(100vh-120px)] md:overflow-y-auto overflow-visible" : ""}`}>
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={false}
                     animate={{ opacity: 1, y: 0 }}
                     className="max-w-md mx-auto relative"
                 >
