@@ -192,27 +192,13 @@ body {
   }
 }
 
-/* ─── JivoChat & Mobile Scroll Stability ─── */
-@media (max-width: 768px) {
+/* ─── Mobile Scroll Stability ─── */
 
-  /* Raise JivoChat to avoid covering bottom nav */
-  #jivo-iframe-container,
-  #jivo-iframe-container iframe,
-  .jivo-iframe-container,
-  .jivo-iframe-container iframe,
-  [id*="jivo"],
-  [class*="jivo"],
-  jdiv {
-    bottom: 115px !important;
-    top: auto !important;
-    transform: none !important;
-  }
-
-  /* Stabilize mobile body scroll */
-  html,
-  body {
-    height: auto;
-    min-height: 100%;
-    -webkit-overflow-scrolling: touch;
-  }
+/* Stabilize mobile body scroll */
+html,
+body {
+  height: auto;
+  min-height: 100%;
+  -webkit-overflow-scrolling: touch;
+}
 }
